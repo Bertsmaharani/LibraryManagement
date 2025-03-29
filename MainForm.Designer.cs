@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             AddBook = new Button();
             DeleteBook = new Button();
@@ -35,9 +36,9 @@
             ReturnBook = new Button();
             label1 = new Label();
             ListBooks = new DataGridView();
-            dataGridView1 = new DataGridView();
+            libraryClassBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)ListBooks).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource).BeginInit();
             SuspendLayout();
             // 
             // AddBook
@@ -93,29 +94,25 @@
             // ListBooks
             // 
             ListBooks.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            ListBooks.AutoGenerateColumns = false;
             ListBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ListBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ListBooks.DataSource = libraryClassBindingSource;
             ListBooks.Location = new Point(0, 204);
             ListBooks.Name = "ListBooks";
             ListBooks.RowHeadersWidth = 62;
             ListBooks.Size = new Size(800, 246);
             ListBooks.TabIndex = 5;
             // 
-            // dataGridView1
+            // libraryClassBindingSource
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(124, 234);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(360, 225);
-            dataGridView1.TabIndex = 6;
+            libraryClassBindingSource.DataSource = typeof(LibraryClass);
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
             Controls.Add(ListBooks);
             Controls.Add(label1);
             Controls.Add(ReturnBook);
@@ -126,7 +123,7 @@
             Name = "MainForm";
             Text = "Библиотека им. Ф.М. Достоевского";
             ((System.ComponentModel.ISupportInitialize)ListBooks).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -138,6 +135,6 @@
         private Button ReturnBook;
         private Label label1;
         private DataGridView ListBooks;
-        private DataGridView dataGridView1;
+        private BindingSource libraryClassBindingSource;
     }
 }

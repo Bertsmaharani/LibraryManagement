@@ -11,23 +11,26 @@ namespace LibraryManagement
 
         private void buttonAddBook_Click(object sender, EventArgs e)
         {
-            AddingBook dlg1 = new AddingBook(books);
-            dlg1.Show();
+            AddingBook newForm = new AddingBook(books);
+            newForm.Show();
         }
 
         private void buttonGiveOutBook_Click(object sender, EventArgs e)
         {
-
+            GiveOutBook newForm = new GiveOutBook(books);
+            newForm.Show();
         }
 
         private void buttonDeleteBook_Click(object sender, EventArgs e)
         {
-
+            DeleteBook newForm = new DeleteBook(books);
+            newForm.Show();
         }
 
         private void buttonReturnBook_Click(object sender, EventArgs e)
         {
-
+            ReturnBook newForm = new ReturnBook(books);
+            newForm.Show();
         }
     }
 }
