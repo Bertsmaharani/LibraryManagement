@@ -32,11 +32,12 @@
             DeleteBook = new Button();
             GiveOutBook = new Button();
             ReturnBook = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // AddBook
             // 
-            AddBook.Location = new Point(224, 115);
+            AddBook.Location = new Point(134, 146);
             AddBook.Name = "AddBook";
             AddBook.Size = new Size(139, 48);
             AddBook.TabIndex = 0;
@@ -46,9 +47,9 @@
             // 
             // DeleteBook
             // 
-            DeleteBook.Location = new Point(442, 146);
+            DeleteBook.Location = new Point(293, 146);
             DeleteBook.Name = "DeleteBook";
-            DeleteBook.Size = new Size(112, 34);
+            DeleteBook.Size = new Size(139, 48);
             DeleteBook.TabIndex = 1;
             DeleteBook.Text = "Удаление";
             DeleteBook.UseVisualStyleBackColor = true;
@@ -56,9 +57,9 @@
             // 
             // GiveOutBook
             // 
-            GiveOutBook.Location = new Point(134, 272);
+            GiveOutBook.Location = new Point(456, 146);
             GiveOutBook.Name = "GiveOutBook";
-            GiveOutBook.Size = new Size(112, 34);
+            GiveOutBook.Size = new Size(139, 48);
             GiveOutBook.TabIndex = 2;
             GiveOutBook.Text = "Выдача";
             GiveOutBook.UseVisualStyleBackColor = true;
@@ -66,26 +67,38 @@
             // 
             // ReturnBook
             // 
-            ReturnBook.Location = new Point(408, 269);
+            ReturnBook.Location = new Point(456, 224);
             ReturnBook.Name = "ReturnBook";
-            ReturnBook.Size = new Size(112, 34);
+            ReturnBook.Size = new Size(139, 48);
             ReturnBook.TabIndex = 3;
             ReturnBook.Text = "Вовзрат";
             ReturnBook.UseVisualStyleBackColor = true;
             ReturnBook.Click += buttonReturnBook_Click;
             // 
-            // Form1
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Dock = DockStyle.Top;
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(59, 25);
+            label1.TabIndex = 4;
+            label1.Text = "label1";
+            // 
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
             Controls.Add(ReturnBook);
             Controls.Add(GiveOutBook);
             Controls.Add(DeleteBook);
             Controls.Add(AddBook);
-            Name = "Form1";
+            Name = "MainForm";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -94,5 +107,6 @@
         private Button DeleteBook;
         private Button GiveOutBook;
         private Button ReturnBook;
+        private Label label1;
     }
 }
