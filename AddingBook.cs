@@ -32,7 +32,6 @@ namespace LibraryManagement
                 Quantity = Convert.ToInt32(textBoxQuantity.Text)
             };
             books.Add(book);
-            //RefreshBookGrid();
             Close();
         }
     }
