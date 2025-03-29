@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             AddBook = new Button();
             DeleteBook = new Button();
             GiveOutBook = new Button();
@@ -47,7 +48,7 @@
             // 
             // DeleteBook
             // 
-            DeleteBook.Location = new Point(293, 146);
+            DeleteBook.Location = new Point(134, 234);
             DeleteBook.Name = "DeleteBook";
             DeleteBook.Size = new Size(139, 48);
             DeleteBook.TabIndex = 1;
@@ -57,7 +58,7 @@
             // 
             // GiveOutBook
             // 
-            GiveOutBook.Location = new Point(456, 146);
+            GiveOutBook.Location = new Point(517, 146);
             GiveOutBook.Name = "GiveOutBook";
             GiveOutBook.Size = new Size(139, 48);
             GiveOutBook.TabIndex = 2;
@@ -67,7 +68,7 @@
             // 
             // ReturnBook
             // 
-            ReturnBook.Location = new Point(456, 224);
+            ReturnBook.Location = new Point(517, 234);
             ReturnBook.Name = "ReturnBook";
             ReturnBook.Size = new Size(139, 48);
             ReturnBook.TabIndex = 3;
@@ -77,13 +78,13 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
             label1.Dock = DockStyle.Top;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(59, 25);
+            label1.Size = new Size(800, 25);
             label1.TabIndex = 4;
-            label1.Text = "label1";
+            label1.Text = "Работа с книгами";
+            label1.TextAlign = ContentAlignment.TopCenter;
             // 
             // MainForm
             // 
@@ -95,10 +96,10 @@
             Controls.Add(GiveOutBook);
             Controls.Add(DeleteBook);
             Controls.Add(AddBook);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
-            Text = "Form1";
+            Text = "Библиотека им. Ф.М. Достоевского";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
