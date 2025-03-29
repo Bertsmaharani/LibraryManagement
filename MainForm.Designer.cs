@@ -34,11 +34,13 @@
             GiveOutBook = new Button();
             ReturnBook = new Button();
             label1 = new Label();
+            ListBooks = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)ListBooks).BeginInit();
             SuspendLayout();
             // 
             // AddBook
             // 
-            AddBook.Location = new Point(134, 146);
+            AddBook.Location = new Point(29, 117);
             AddBook.Name = "AddBook";
             AddBook.Size = new Size(139, 48);
             AddBook.TabIndex = 0;
@@ -48,7 +50,7 @@
             // 
             // DeleteBook
             // 
-            DeleteBook.Location = new Point(134, 234);
+            DeleteBook.Location = new Point(241, 117);
             DeleteBook.Name = "DeleteBook";
             DeleteBook.Size = new Size(139, 48);
             DeleteBook.TabIndex = 1;
@@ -58,7 +60,7 @@
             // 
             // GiveOutBook
             // 
-            GiveOutBook.Location = new Point(517, 146);
+            GiveOutBook.Location = new Point(29, 234);
             GiveOutBook.Name = "GiveOutBook";
             GiveOutBook.Size = new Size(139, 48);
             GiveOutBook.TabIndex = 2;
@@ -68,7 +70,7 @@
             // 
             // ReturnBook
             // 
-            ReturnBook.Location = new Point(517, 234);
+            ReturnBook.Location = new Point(241, 234);
             ReturnBook.Name = "ReturnBook";
             ReturnBook.Size = new Size(139, 48);
             ReturnBook.TabIndex = 3;
@@ -86,11 +88,22 @@
             label1.Text = "Работа с книгами";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
+            // ListBooks
+            // 
+            ListBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ListBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ListBooks.Location = new Point(402, 48);
+            ListBooks.Name = "ListBooks";
+            ListBooks.RowHeadersWidth = 62;
+            ListBooks.Size = new Size(398, 402);
+            ListBooks.TabIndex = 5;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(ListBooks);
             Controls.Add(label1);
             Controls.Add(ReturnBook);
             Controls.Add(GiveOutBook);
@@ -99,6 +112,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
             Text = "Библиотека им. Ф.М. Достоевского";
+            ((System.ComponentModel.ISupportInitialize)ListBooks).EndInit();
             ResumeLayout(false);
         }
 
@@ -109,5 +123,6 @@
         private Button GiveOutBook;
         private Button ReturnBook;
         private Label label1;
+        private DataGridView ListBooks;
     }
 }
