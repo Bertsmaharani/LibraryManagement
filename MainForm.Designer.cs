@@ -35,7 +35,9 @@
             ReturnBook = new Button();
             label1 = new Label();
             ListBooks = new DataGridView();
+            dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)ListBooks).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // AddBook
@@ -74,7 +76,7 @@
             ReturnBook.Name = "ReturnBook";
             ReturnBook.Size = new Size(139, 48);
             ReturnBook.TabIndex = 3;
-            ReturnBook.Text = "Вовзрат";
+            ReturnBook.Text = "Возврат";
             ReturnBook.UseVisualStyleBackColor = true;
             ReturnBook.Click += buttonReturnBook_Click;
             // 
@@ -99,11 +101,21 @@
             ListBooks.Size = new Size(800, 246);
             ListBooks.TabIndex = 5;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(124, 234);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.Size = new Size(360, 225);
+            dataGridView1.TabIndex = 6;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dataGridView1);
             Controls.Add(ListBooks);
             Controls.Add(label1);
             Controls.Add(ReturnBook);
@@ -114,6 +126,7 @@
             Name = "MainForm";
             Text = "Библиотека им. Ф.М. Достоевского";
             ((System.ComponentModel.ISupportInitialize)ListBooks).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -125,5 +138,6 @@
         private Button ReturnBook;
         private Label label1;
         private DataGridView ListBooks;
+        private DataGridView dataGridView1;
     }
 }
