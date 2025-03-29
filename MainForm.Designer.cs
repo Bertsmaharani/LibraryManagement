@@ -50,7 +50,7 @@
             // 
             // DeleteBook
             // 
-            DeleteBook.Location = new Point(241, 117);
+            DeleteBook.Location = new Point(234, 117);
             DeleteBook.Name = "DeleteBook";
             DeleteBook.Size = new Size(139, 48);
             DeleteBook.TabIndex = 1;
@@ -60,7 +60,7 @@
             // 
             // GiveOutBook
             // 
-            GiveOutBook.Location = new Point(29, 234);
+            GiveOutBook.Location = new Point(436, 117);
             GiveOutBook.Name = "GiveOutBook";
             GiveOutBook.Size = new Size(139, 48);
             GiveOutBook.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             // ReturnBook
             // 
-            ReturnBook.Location = new Point(241, 234);
+            ReturnBook.Location = new Point(636, 117);
             ReturnBook.Name = "ReturnBook";
             ReturnBook.Size = new Size(139, 48);
             ReturnBook.TabIndex = 3;
@@ -90,12 +90,13 @@
             // 
             // ListBooks
             // 
+            ListBooks.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             ListBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ListBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ListBooks.Location = new Point(402, 48);
+            ListBooks.Location = new Point(0, 204);
             ListBooks.Name = "ListBooks";
             ListBooks.RowHeadersWidth = 62;
-            ListBooks.Size = new Size(398, 402);
+            ListBooks.Size = new Size(800, 246);
             ListBooks.TabIndex = 5;
             // 
             // MainForm
