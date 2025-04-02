@@ -37,13 +37,15 @@
             label1 = new Label();
             ListBooks = new DataGridView();
             libraryClassBindingSource = new BindingSource(components);
+            textBoxIdBook = new TextBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)ListBooks).BeginInit();
             ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource).BeginInit();
             SuspendLayout();
             // 
             // AddBook
             // 
-            AddBook.Location = new Point(29, 117);
+            AddBook.Location = new Point(12, 55);
             AddBook.Name = "AddBook";
             AddBook.Size = new Size(139, 48);
             AddBook.TabIndex = 0;
@@ -53,7 +55,7 @@
             // 
             // DeleteBook
             // 
-            DeleteBook.Location = new Point(234, 117);
+            DeleteBook.Location = new Point(12, 135);
             DeleteBook.Name = "DeleteBook";
             DeleteBook.Size = new Size(139, 48);
             DeleteBook.TabIndex = 1;
@@ -63,7 +65,7 @@
             // 
             // GiveOutBook
             // 
-            GiveOutBook.Location = new Point(436, 117);
+            GiveOutBook.Location = new Point(247, 55);
             GiveOutBook.Name = "GiveOutBook";
             GiveOutBook.Size = new Size(139, 48);
             GiveOutBook.TabIndex = 2;
@@ -73,7 +75,7 @@
             // 
             // ReturnBook
             // 
-            ReturnBook.Location = new Point(636, 117);
+            ReturnBook.Location = new Point(247, 135);
             ReturnBook.Name = "ReturnBook";
             ReturnBook.Size = new Size(139, 48);
             ReturnBook.TabIndex = 3;
@@ -108,11 +110,29 @@
             // 
             libraryClassBindingSource.DataSource = typeof(LibraryClass);
             // 
+            // textBoxIdBook
+            // 
+            textBoxIdBook.Location = new Point(565, 106);
+            textBoxIdBook.Name = "textBoxIdBook";
+            textBoxIdBook.Size = new Size(150, 31);
+            textBoxIdBook.TabIndex = 6;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(504, 109);
+            label2.Name = "label2";
+            label2.Size = new Size(30, 25);
+            label2.TabIndex = 7;
+            label2.Text = "ID";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
+            Controls.Add(textBoxIdBook);
             Controls.Add(ListBooks);
             Controls.Add(label1);
             Controls.Add(ReturnBook);
@@ -125,6 +145,7 @@
             ((System.ComponentModel.ISupportInitialize)ListBooks).EndInit();
             ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -136,5 +157,7 @@
         private Label label1;
         private DataGridView ListBooks;
         private BindingSource libraryClassBindingSource;
+        private TextBox textBoxIdBook;
+        private Label label2;
     }
 }

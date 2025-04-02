@@ -10,7 +10,7 @@ namespace LibraryManagement
     {
         public class Book
         {
-            public Guid ID;
+            public int ID;
             public string Title { get; set; }
             public string Author { get; set; }
             public int Year { get; set; }

@@ -15,17 +15,17 @@ namespace LibraryManagement
     {
         private List<Book> books;
         public AddingBook(List<Book> books)
-        { 
+        {
             InitializeComponent();
             this.books = books;
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
         }
 
         private void buttonAddNew_Click(object sender, EventArgs e)
         {
             Book book = new Book
             {
-                ID = new Guid(),
+                //ID = ConvertToInt32(textBoxId.Text),
                 Title = textBoxTitle.Text,
                 Author = textBoxAuthor.Text,
                 isIssued = Convert.ToBoolean(comboBoxStatus.Text),

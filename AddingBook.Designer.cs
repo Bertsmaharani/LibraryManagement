@@ -40,6 +40,8 @@
             textBoxYear = new TextBox();
             textBoxQuantity = new TextBox();
             comboBoxStatus = new ComboBox();
+            textBox1 = new TextBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // buttonAddNew
@@ -68,7 +70,7 @@
             // 
             NameBook.Anchor = AnchorStyles.None;
             NameBook.AutoSize = true;
-            NameBook.Location = new Point(111, 82);
+            NameBook.Location = new Point(370, 82);
             NameBook.Name = "NameBook";
             NameBook.Size = new Size(90, 25);
             NameBook.TabIndex = 2;
@@ -78,7 +80,7 @@
             // 
             Author.Anchor = AnchorStyles.None;
             Author.AutoSize = true;
-            Author.Location = new Point(376, 82);
+            Author.Location = new Point(637, 82);
             Author.Name = "Author";
             Author.Size = new Size(63, 25);
             Author.TabIndex = 3;
@@ -88,7 +90,7 @@
             // 
             YearPublishing.Anchor = AnchorStyles.None;
             YearPublishing.AutoSize = true;
-            YearPublishing.Location = new Point(620, 82);
+            YearPublishing.Location = new Point(89, 236);
             YearPublishing.Name = "YearPublishing";
             YearPublishing.Size = new Size(112, 25);
             YearPublishing.TabIndex = 4;
@@ -98,7 +100,7 @@
             // 
             Status.Anchor = AnchorStyles.None;
             Status.AutoSize = true;
-            Status.Location = new Point(123, 236);
+            Status.Location = new Point(376, 236);
             Status.Name = "Status";
             Status.Size = new Size(63, 25);
             Status.TabIndex = 5;
@@ -108,7 +110,7 @@
             // 
             Quantity.Anchor = AnchorStyles.None;
             Quantity.AutoSize = true;
-            Quantity.Location = new Point(353, 236);
+            Quantity.Location = new Point(620, 236);
             Quantity.Name = "Quantity";
             Quantity.Size = new Size(107, 25);
             Quantity.TabIndex = 6;
@@ -117,7 +119,7 @@
             // textBoxTitle
             // 
             textBoxTitle.Anchor = AnchorStyles.None;
-            textBoxTitle.Location = new Point(59, 126);
+            textBoxTitle.Location = new Point(324, 126);
             textBoxTitle.Name = "textBoxTitle";
             textBoxTitle.Size = new Size(182, 31);
             textBoxTitle.TabIndex = 7;
@@ -125,7 +127,7 @@
             // textBoxAuthor
             // 
             textBoxAuthor.Anchor = AnchorStyles.None;
-            textBoxAuthor.Location = new Point(324, 126);
+            textBoxAuthor.Location = new Point(586, 126);
             textBoxAuthor.Name = "textBoxAuthor";
             textBoxAuthor.Size = new Size(182, 31);
             textBoxAuthor.TabIndex = 8;
@@ -133,7 +135,7 @@
             // textBoxYear
             // 
             textBoxYear.Anchor = AnchorStyles.None;
-            textBoxYear.Location = new Point(586, 126);
+            textBoxYear.Location = new Point(59, 294);
             textBoxYear.Name = "textBoxYear";
             textBoxYear.Size = new Size(182, 31);
             textBoxYear.TabIndex = 9;
@@ -141,7 +143,7 @@
             // textBoxQuantity
             // 
             textBoxQuantity.Anchor = AnchorStyles.None;
-            textBoxQuantity.Location = new Point(324, 292);
+            textBoxQuantity.Location = new Point(586, 294);
             textBoxQuantity.Name = "textBoxQuantity";
             textBoxQuantity.Size = new Size(182, 31);
             textBoxQuantity.TabIndex = 11;
@@ -151,16 +153,34 @@
             comboBoxStatus.Anchor = AnchorStyles.None;
             comboBoxStatus.FormattingEnabled = true;
             comboBoxStatus.Items.AddRange(new object[] { "Доступна", "Недоступна" });
-            comboBoxStatus.Location = new Point(59, 292);
+            comboBoxStatus.Location = new Point(324, 292);
             comboBoxStatus.Name = "comboBoxStatus";
             comboBoxStatus.Size = new Size(182, 33);
             comboBoxStatus.TabIndex = 12;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(59, 126);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(182, 31);
+            textBox1.TabIndex = 13;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(130, 82);
+            label1.Name = "label1";
+            label1.Size = new Size(59, 25);
+            label1.TabIndex = 14;
+            label1.Text = "label1";
             // 
             // AddingBook
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
+            Controls.Add(textBox1);
             Controls.Add(comboBoxStatus);
             Controls.Add(textBoxQuantity);
             Controls.Add(textBoxYear);
@@ -193,5 +213,7 @@
         private TextBox textBoxYear;
         private TextBox textBoxQuantity;
         private ComboBox comboBoxStatus;
+        private TextBox textBox1;
+        private Label label1;
     }
 }

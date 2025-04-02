@@ -17,20 +17,19 @@ namespace LibraryManagement
 
         private void buttonGiveOutBook_Click(object sender, EventArgs e)
         {
-            GiveOutBook newForm = new GiveOutBook(books);
-            newForm.Show();
+            
         }
 
         private void buttonDeleteBook_Click(object sender, EventArgs e)
         {
-            DeleteBook newForm = new DeleteBook(books);
-            newForm.Show();
+            int id = Convert.ToInt32(textBoxIdBook.Text);
+            books.RemoveAll(b => b.ID == id);
+            //RefreshBookGrid();
         }
 
         private void buttonReturnBook_Click(object sender, EventArgs e)
         {
-            ReturnBook newForm = new ReturnBook(books);
-            newForm.Show();
+
         }
     }
 }
