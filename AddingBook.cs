@@ -18,14 +18,13 @@ namespace LibraryManagement
         {
             InitializeComponent();
             this.books = books;
-            //this.WindowState = FormWindowState.Maximized;
         }
 
         private void buttonAddNew_Click(object sender, EventArgs e)
         {
             Book book = new Book
             {
-                //ID = ConvertToInt32(textBoxId.Text),
+                ID = Convert.ToInt32(textBoxIDBook.Text),
                 Title = textBoxTitle.Text,
                 Author = textBoxAuthor.Text,
                 isIssued = Convert.ToBoolean(comboBoxStatus.Text),

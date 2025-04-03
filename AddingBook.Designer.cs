@@ -40,7 +40,7 @@
             textBoxYear = new TextBox();
             textBoxQuantity = new TextBox();
             comboBoxStatus = new ComboBox();
-            textBox1 = new TextBox();
+            textBoxIDBook = new TextBox();
             label1 = new Label();
             SuspendLayout();
             // 
@@ -158,12 +158,12 @@
             comboBoxStatus.Size = new Size(182, 33);
             comboBoxStatus.TabIndex = 12;
             // 
-            // textBox1
+            // textBoxIDBook
             // 
-            textBox1.Location = new Point(59, 126);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(182, 31);
-            textBox1.TabIndex = 13;
+            textBoxIDBook.Location = new Point(59, 126);
+            textBoxIDBook.Name = "textBoxIDBook";
+            textBoxIDBook.Size = new Size(182, 31);
+            textBoxIDBook.TabIndex = 13;
             // 
             // label1
             // 
@@ -180,7 +180,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(textBoxIDBook);
             Controls.Add(comboBoxStatus);
             Controls.Add(textBoxQuantity);
             Controls.Add(textBoxYear);
@@ -213,7 +213,7 @@
         private TextBox textBoxYear;
         private TextBox textBoxQuantity;
         private ComboBox comboBoxStatus;
-        private TextBox textBox1;
+        private TextBox textBoxIDBook;
         private Label label1;
     }
 }
