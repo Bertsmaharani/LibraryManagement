@@ -36,15 +36,15 @@
             ReturnBook = new Button();
             label1 = new Label();
             ListBooks = new DataGridView();
-            libraryClassBindingSource = new BindingSource(components);
-            textBoxIdBook = new TextBox();
-            label2 = new Label();
             ColumnID = new DataGridViewTextBoxColumn();
             ColumnTitle = new DataGridViewTextBoxColumn();
             ColumnAuthor = new DataGridViewTextBoxColumn();
             ColumnYear = new DataGridViewTextBoxColumn();
             ColumnQuantity = new DataGridViewTextBoxColumn();
             ColumnStatus = new DataGridViewTextBoxColumn();
+            libraryClassBindingSource = new BindingSource(components);
+            textBoxIdBook = new TextBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)ListBooks).BeginInit();
             ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource).BeginInit();
             SuspendLayout();
@@ -65,7 +65,7 @@
             DeleteBook.Name = "DeleteBook";
             DeleteBook.Size = new Size(139, 48);
             DeleteBook.TabIndex = 1;
-            DeleteBook.Text = "Удаление";
+            DeleteBook.Text = "Удалить";
             DeleteBook.UseVisualStyleBackColor = true;
             DeleteBook.Click += ButtonDeleteBook_Click;
             // 
@@ -75,7 +75,7 @@
             GiveOutBook.Name = "GiveOutBook";
             GiveOutBook.Size = new Size(139, 48);
             GiveOutBook.TabIndex = 2;
-            GiveOutBook.Text = "Выдача";
+            GiveOutBook.Text = "Выдать";
             GiveOutBook.UseVisualStyleBackColor = true;
             GiveOutBook.Click += ButtonGiveOutBook_Click;
             // 
@@ -85,7 +85,7 @@
             ReturnBook.Name = "ReturnBook";
             ReturnBook.Size = new Size(139, 48);
             ReturnBook.TabIndex = 3;
-            ReturnBook.Text = "Возврат";
+            ReturnBook.Text = "Вернуть";
             ReturnBook.UseVisualStyleBackColor = true;
             ReturnBook.Click += ButtonReturnBook_Click;
             // 
@@ -112,26 +112,6 @@
             ListBooks.RowHeadersWidth = 62;
             ListBooks.Size = new Size(800, 246);
             ListBooks.TabIndex = 5;
-            // 
-            // libraryClassBindingSource
-            // 
-            libraryClassBindingSource.DataSource = typeof(LibraryClass);
-            // 
-            // textBoxIdBook
-            // 
-            textBoxIdBook.Location = new Point(565, 106);
-            textBoxIdBook.Name = "textBoxIdBook";
-            textBoxIdBook.Size = new Size(150, 31);
-            textBoxIdBook.TabIndex = 6;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(504, 109);
-            label2.Name = "label2";
-            label2.Size = new Size(30, 25);
-            label2.TabIndex = 7;
-            label2.Text = "ID";
             // 
             // ColumnID
             // 
@@ -168,6 +148,26 @@
             ColumnStatus.HeaderText = "Статус";
             ColumnStatus.MinimumWidth = 8;
             ColumnStatus.Name = "ColumnStatus";
+            // 
+            // libraryClassBindingSource
+            // 
+            libraryClassBindingSource.DataSource = typeof(LibraryClass);
+            // 
+            // textBoxIdBook
+            // 
+            textBoxIdBook.Location = new Point(565, 106);
+            textBoxIdBook.Name = "textBoxIdBook";
+            textBoxIdBook.Size = new Size(150, 31);
+            textBoxIdBook.TabIndex = 6;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(504, 109);
+            label2.Name = "label2";
+            label2.Size = new Size(30, 25);
+            label2.TabIndex = 7;
+            label2.Text = "ID";
             // 
             // MainForm
             // 

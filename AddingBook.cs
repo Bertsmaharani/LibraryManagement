@@ -27,6 +27,7 @@ namespace LibraryManagement
                 ID = Convert.ToInt32(textBoxIDBook.Text),
                 Title = textBoxTitle.Text,
                 Author = textBoxAuthor.Text,
+                Year = Convert.ToInt32(textBoxYear.Text),
                 Quantity = Convert.ToInt32(textBoxQuantity.Text),
                 IsIssued = (comboBoxStatus.Text == "Доступна") ? (true) : (false),
             };
