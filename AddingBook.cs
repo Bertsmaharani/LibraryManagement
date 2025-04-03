@@ -20,15 +20,15 @@ namespace LibraryManagement
             this.books = books;
         }
 
-        private void buttonAddNew_Click(object sender, EventArgs e)
+        private void ButtonAddNew_Click(object sender, EventArgs e)
         {
-            Book book = new Book
+            Book book = new()
             {
                 ID = Convert.ToInt32(textBoxIDBook.Text),
                 Title = textBoxTitle.Text,
                 Author = textBoxAuthor.Text,
-                isIssued = Convert.ToBoolean(comboBoxStatus.Text),
-                Quantity = Convert.ToInt32(textBoxQuantity.Text)
+                Quantity = Convert.ToInt32(textBoxQuantity.Text),
+                IsIssued = (comboBoxStatus.Text == "Доступна") ? (true) : (false),
             };
             books.Add(book);
             Close();

@@ -39,6 +39,12 @@
             libraryClassBindingSource = new BindingSource(components);
             textBoxIdBook = new TextBox();
             label2 = new Label();
+            ColumnID = new DataGridViewTextBoxColumn();
+            ColumnTitle = new DataGridViewTextBoxColumn();
+            ColumnAuthor = new DataGridViewTextBoxColumn();
+            ColumnYear = new DataGridViewTextBoxColumn();
+            ColumnQuantity = new DataGridViewTextBoxColumn();
+            ColumnStatus = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)ListBooks).BeginInit();
             ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource).BeginInit();
             SuspendLayout();
@@ -51,7 +57,7 @@
             AddBook.TabIndex = 0;
             AddBook.Text = "Добавление";
             AddBook.UseVisualStyleBackColor = true;
-            AddBook.Click += buttonAddBook_Click;
+            AddBook.Click += ButtonAddBook_Click;
             // 
             // DeleteBook
             // 
@@ -61,7 +67,7 @@
             DeleteBook.TabIndex = 1;
             DeleteBook.Text = "Удаление";
             DeleteBook.UseVisualStyleBackColor = true;
-            DeleteBook.Click += buttonDeleteBook_Click;
+            DeleteBook.Click += ButtonDeleteBook_Click;
             // 
             // GiveOutBook
             // 
@@ -71,7 +77,7 @@
             GiveOutBook.TabIndex = 2;
             GiveOutBook.Text = "Выдача";
             GiveOutBook.UseVisualStyleBackColor = true;
-            GiveOutBook.Click += buttonGiveOutBook_Click;
+            GiveOutBook.Click += ButtonGiveOutBook_Click;
             // 
             // ReturnBook
             // 
@@ -81,7 +87,7 @@
             ReturnBook.TabIndex = 3;
             ReturnBook.Text = "Возврат";
             ReturnBook.UseVisualStyleBackColor = true;
-            ReturnBook.Click += buttonReturnBook_Click;
+            ReturnBook.Click += ButtonReturnBook_Click;
             // 
             // label1
             // 
@@ -99,6 +105,7 @@
             ListBooks.AutoGenerateColumns = false;
             ListBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ListBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ListBooks.Columns.AddRange(new DataGridViewColumn[] { ColumnID, ColumnTitle, ColumnAuthor, ColumnYear, ColumnQuantity, ColumnStatus });
             ListBooks.DataSource = libraryClassBindingSource;
             ListBooks.Location = new Point(0, 204);
             ListBooks.Name = "ListBooks";
@@ -125,6 +132,42 @@
             label2.Size = new Size(30, 25);
             label2.TabIndex = 7;
             label2.Text = "ID";
+            // 
+            // ColumnID
+            // 
+            ColumnID.HeaderText = "Id книги";
+            ColumnID.MinimumWidth = 8;
+            ColumnID.Name = "ColumnID";
+            // 
+            // ColumnTitle
+            // 
+            ColumnTitle.HeaderText = "Название";
+            ColumnTitle.MinimumWidth = 8;
+            ColumnTitle.Name = "ColumnTitle";
+            // 
+            // ColumnAuthor
+            // 
+            ColumnAuthor.HeaderText = "Автор";
+            ColumnAuthor.MinimumWidth = 8;
+            ColumnAuthor.Name = "ColumnAuthor";
+            // 
+            // ColumnYear
+            // 
+            ColumnYear.HeaderText = "Год издания";
+            ColumnYear.MinimumWidth = 8;
+            ColumnYear.Name = "ColumnYear";
+            // 
+            // ColumnQuantity
+            // 
+            ColumnQuantity.HeaderText = "Количество";
+            ColumnQuantity.MinimumWidth = 8;
+            ColumnQuantity.Name = "ColumnQuantity";
+            // 
+            // ColumnStatus
+            // 
+            ColumnStatus.HeaderText = "Статус";
+            ColumnStatus.MinimumWidth = 8;
+            ColumnStatus.Name = "ColumnStatus";
             // 
             // MainForm
             // 
@@ -159,5 +202,11 @@
         private BindingSource libraryClassBindingSource;
         private TextBox textBoxIdBook;
         private Label label2;
+        private DataGridViewTextBoxColumn ColumnID;
+        private DataGridViewTextBoxColumn ColumnTitle;
+        private DataGridViewTextBoxColumn ColumnAuthor;
+        private DataGridViewTextBoxColumn ColumnYear;
+        private DataGridViewTextBoxColumn ColumnQuantity;
+        private DataGridViewTextBoxColumn ColumnStatus;
     }
 }

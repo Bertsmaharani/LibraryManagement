@@ -41,7 +41,7 @@
             textBoxQuantity = new TextBox();
             comboBoxStatus = new ComboBox();
             textBoxIDBook = new TextBox();
-            label1 = new Label();
+            labelID = new Label();
             SuspendLayout();
             // 
             // buttonAddNew
@@ -54,7 +54,7 @@
             buttonAddNew.TabIndex = 0;
             buttonAddNew.Text = "Добавить";
             buttonAddNew.UseVisualStyleBackColor = true;
-            buttonAddNew.Click += buttonAddNew_Click;
+            buttonAddNew.Click += ButtonAddNew_Click;
             // 
             // labelAdding
             // 
@@ -165,21 +165,21 @@
             textBoxIDBook.Size = new Size(182, 31);
             textBoxIDBook.TabIndex = 13;
             // 
-            // label1
+            // labelID
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(130, 82);
-            label1.Name = "label1";
-            label1.Size = new Size(59, 25);
-            label1.TabIndex = 14;
-            label1.Text = "label1";
+            labelID.AutoSize = true;
+            labelID.Location = new Point(113, 82);
+            labelID.Name = "labelID";
+            labelID.Size = new Size(79, 25);
+            labelID.TabIndex = 14;
+            labelID.Text = "Id книги";
             // 
             // AddingBook
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(label1);
+            Controls.Add(labelID);
             Controls.Add(textBoxIDBook);
             Controls.Add(comboBoxStatus);
             Controls.Add(textBoxQuantity);
@@ -214,6 +214,6 @@
         private TextBox textBoxQuantity;
         private ComboBox comboBoxStatus;
         private TextBox textBoxIDBook;
-        private Label label1;
+        private Label labelID;
     }
 }
