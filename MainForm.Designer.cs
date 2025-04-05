@@ -50,6 +50,7 @@
             textBoxQuantity = new TextBox();
             comboBoxStatus = new ComboBox();
             libraryClassBindingSource1 = new BindingSource(components);
+            buttonLoadData = new Button();
             ((System.ComponentModel.ISupportInitialize)ListBooks).BeginInit();
             ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource1).BeginInit();
@@ -61,7 +62,7 @@
             AddBook.Name = "AddBook";
             AddBook.Size = new Size(139, 48);
             AddBook.TabIndex = 0;
-            AddBook.Text = "Добавление";
+            AddBook.Text = "Добавить";
             AddBook.UseVisualStyleBackColor = true;
             AddBook.Click += ButtonAddBook_Click;
             // 
@@ -227,11 +228,22 @@
             // 
             libraryClassBindingSource1.DataSource = typeof(LibraryClass);
             // 
+            // buttonLoadData
+            // 
+            buttonLoadData.Location = new Point(405, 323);
+            buttonLoadData.Name = "buttonLoadData";
+            buttonLoadData.Size = new Size(250, 34);
+            buttonLoadData.TabIndex = 27;
+            buttonLoadData.Text = "Загрузить данные из файла";
+            buttonLoadData.UseVisualStyleBackColor = true;
+            buttonLoadData.Click += buttonLoadData_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1027, 609);
+            Controls.Add(buttonLoadData);
             Controls.Add(comboBoxStatus);
             Controls.Add(textBoxQuantity);
             Controls.Add(textBoxYear);
@@ -282,5 +294,6 @@
         private TextBox textBoxQuantity;
         private ComboBox comboBoxStatus;
         private BindingSource libraryClassBindingSource1;
+        private Button buttonLoadData;
     }
 }

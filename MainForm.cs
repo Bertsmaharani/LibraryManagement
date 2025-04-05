@@ -2,6 +2,8 @@ using System.Windows.Forms;
 using static LibraryManagement.LibraryClass;
 using System.Windows.Forms.VisualStyles;
 using System.ComponentModel;
+using System.IO;
+using System.Collections.Generic;
 
 namespace LibraryManagement
 {
@@ -10,7 +12,6 @@ namespace LibraryManagement
         public MainForm()
         {
             InitializeComponent();
-            LoadDataFromFile(@"TxtFile");
         }
         public List<LibraryClass.Book> books = [];
 
@@ -43,7 +44,7 @@ namespace LibraryManagement
                 book.IsIssued = false;
                 RefreshBookGrid();
             }
-            else if(book != null && book.IsIssued && book.Quantity > 0)
+            else if (book != null && book.IsIssued && book.Quantity > 0)
             {
                 book.Quantity--;
                 RefreshBookGrid();
@@ -80,64 +81,92 @@ namespace LibraryManagement
             ListBooks.DataSource = null;
             ListBooks.DataSource = books;
             //ListBooks.Columns[0].HeaderText = "Id книги";
-            ListBooks.Columns[0].HeaderText =  "Название";
-            ListBooks.Columns[1].HeaderText =  "Автор";
-            ListBooks.Columns[2].HeaderText =  "Год издания";
-            ListBooks.Columns[3].HeaderText =  "Статус";
-            ListBooks.Columns[4].HeaderText =  "Количество";
+            ListBooks.Columns[0].HeaderText = "Название";
+            ListBooks.Columns[1].HeaderText = "Автор";
+            ListBooks.Columns[2].HeaderText = "Год издания";
+            ListBooks.Columns[3].HeaderText = "Статус";
+            ListBooks.Columns[4].HeaderText = "Количество";
             SaveDataGridViewToFile(@"TxtFile");
         }
         private void SaveDataGridViewToFile(string filePath)
         {
-            using (StreamWriter writer = new StreamWriter(filePath))
+            if (File.Exists(filePath))
             {
-                for (int i = 0; i < ListBooks.Columns.Count; i++)
+                string content = File.ReadAllText(filePath);
+                if (string.IsNullOrEmpty(content))
                 {
-                    writer.Write(ListBooks.Columns[i].HeaderText);
-                    if (i < ListBooks.Columns.Count - 1)
-                        writer.Write(",");
-                }
-                writer.WriteLine();
-                foreach (DataGridViewRow row in ListBooks.Rows)
-                {
-                    if (!row.IsNewRow) 
+                    using (StreamWriter writer = new StreamWriter(filePath))
                     {
                         for (int i = 0; i < ListBooks.Columns.Count; i++)
                         {
-                            writer.Write(row.Cells[i].Value?.ToString());
+                            writer.Write(ListBooks.Columns[i].HeaderText);
                             if (i < ListBooks.Columns.Count - 1)
                                 writer.Write(", ");
                         }
                         writer.WriteLine();
+                        foreach (DataGridViewRow row in ListBooks.Rows)
+                        {
+                            if (!row.IsNewRow)
+                            {
+                                for (int i = 0; i < ListBooks.Columns.Count; i++)
+                                {
+                                    writer.Write(row.Cells[i].Value?.ToString());
+                                    if (i < ListBooks.Columns.Count - 1)
+                                        writer.Write(", ");
+                                }
+                                writer.WriteLine();
+                            }
+                        }
                     }
                 }
             }
         }
-        public void LoadDataFromFile(string filePath)
+        public class BookLoader
         {
-            foreach (var line in File.ReadLines(filePath))
+            public List<Book> LoadBooks(string filePath)
             {
-                var parts = line.Split(',');
-                if (parts.Length == 6)
+                FileInfo fileInfo = new FileInfo(filePath);
+                if (!fileInfo.IsReadOnly)
                 {
-                    Book book = new Book()
-                    {
-                        ID = int.Parse(parts[0]),
-                        Title = parts[1],
-                        Author = parts[2],
-                        Year = int.Parse(parts[3]),
-                        Quantity = int.Parse(parts[4]),
-                        IsIssued = Boolean.Parse(parts[5])
-                    };
-                    books.Add(book);
+                    fileInfo.IsReadOnly = true;
                 }
+                List<Book> booksGrid = new List<Book>();
+
+                try
+                {
+                    var lines = File.ReadAllLines(filePath);
+                    foreach (var line in lines)
+                    {
+                        var parts = line.Split(',');
+
+                        if (parts.Length == 5)
+                        {
+                            Book book = new Book
+                            {
+                                //ID = int.Parse(parts[0]),
+                                Title = parts[0],
+                                Author = parts[1],
+                                Year = int.Parse(parts[2]),
+                                IsIssued = Boolean.Parse(parts[3]),
+                                Quantity = int.Parse(parts[4])
+                            };
+                            booksGrid.Add(book);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка при загрузке книг: {ex.Message}");
+                }
+                return booksGrid;
             }
-            PopulateDataGridView(@"TxtFile");
         }
-        public void PopulateDataGridView(string filePath)
+        private void buttonLoadData_Click(object sender, EventArgs e)
         {
-            var Books = LoadDataFromFile(filePath);
-            ListBooks.DataSource = new BindingList<Book>(Books);
+            BookLoader bookLoader = new BookLoader();
+            string FilePath = "TxtFile";
+            books = bookLoader.LoadBooks(FilePath);
+            RefreshBookGrid();
         }
     }
 }
