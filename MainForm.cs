@@ -58,12 +58,13 @@ namespace LibraryManagement
         {
             int id = Convert.ToInt32(textBoxIdBook.Text);
             var book = books.FirstOrDefault(b => b.ID == id);
-            if (book != null && book.IsIssued && book.Quantity == 0)
+            if (book != null && book.IsIssued && book.Quantity == 1)
             {
                 book.IsIssued = false;
+                book.Quantity--;
                 RefreshBookGrid();
             }
-            else if (book != null && book.IsIssued && book.Quantity > 0)
+            else if (book != null && book.IsIssued && book.Quantity > 1)
             {
                 book.Quantity--;
                 RefreshBookGrid();
@@ -83,7 +84,7 @@ namespace LibraryManagement
         {
             int id = Convert.ToInt32(textBoxIdBook.Text);
             var book = books.FirstOrDefault(b => b.ID == id);
-            if (book != null && book.Quantity > 0)
+            if (book != null && book.IsIssued && book.Quantity > 0)
             {
                 book.Quantity++;
                 RefreshBookGrid();
@@ -91,6 +92,7 @@ namespace LibraryManagement
             else if (book != null && !book.IsIssued && book.Quantity == 0)
             {
                 book.IsIssued = true;
+                book.Quantity++;
                 RefreshBookGrid();
             }
             textBoxIdBook.Text = string.Empty;
