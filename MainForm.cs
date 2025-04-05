@@ -20,22 +20,38 @@ namespace LibraryManagement
 
         private void ButtonAddBook_Click(object sender, EventArgs e)
         {
-            Book book = new()
+            try
             {
-                ID = Convert.ToInt32(textBoxIdBook.Text),
-                Title = textBoxTitle.Text,
-                Author = textBoxAuthor.Text,
-                Year = Convert.ToInt32(textBoxYear.Text),
-                Quantity = Convert.ToInt32(textBoxQuantity.Text),
-                IsIssued = (comboBoxStatus.Text == "Доступна") ? (true) : (false),
-            };
-            books.Add(book);
-            RefreshBookGrid();
-            textBoxIdBook.Text = string.Empty;
-            textBoxTitle.Text = string.Empty;
-            textBoxAuthor.Text = string.Empty;
-            textBoxYear.Text = string.Empty;
-            textBoxQuantity.Text = string.Empty;
+                if(string.IsNullOrEmpty(textBoxIdBook.Text) || string.IsNullOrEmpty(textBoxTitle.Text) 
+                    || string.IsNullOrEmpty(textBoxYear.Text) || string.IsNullOrEmpty(textBoxQuantity.Text) 
+                    || string.IsNullOrEmpty(textBoxAuthor.Text) || string.IsNullOrEmpty(comboBoxStatus.Text))
+                {
+                    throw new Exception("Все поля должны быть заполнены!");
+                }
+                Book book = new()
+                {
+                    ID = Convert.ToInt32(textBoxIdBook.Text),
+                    Title = textBoxTitle.Text,
+                    Author = textBoxAuthor.Text,
+                    Year = Convert.ToInt32(textBoxYear.Text),
+                    Quantity = Convert.ToInt32(textBoxQuantity.Text),
+                    IsIssued = (comboBoxStatus.Text == "Доступна") ? (true) : (false),
+                };
+                books.Add(book);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                RefreshBookGrid();
+                textBoxIdBook.Text = string.Empty;
+                textBoxTitle.Text = string.Empty;
+                textBoxAuthor.Text = string.Empty;
+                textBoxYear.Text = string.Empty;
+                textBoxQuantity.Text = string.Empty;
+            }
         }
 
         private void ButtonGiveOutBook_Click(object sender, EventArgs e)
