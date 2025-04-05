@@ -106,21 +106,21 @@ namespace LibraryManagement
             ListBooks.Columns[3].HeaderText = "Статус";
             ListBooks.Columns[4].HeaderText = "Количество";
         }
-        private void SaveDataGridViewToFile(string filePath, List<Book> books)
+        private static void SaveDataGridViewToFile(string filePath, List<Book> books)
         {
             var json = JsonConvert.SerializeObject(books, Formatting.Indented);
-            using (FileStream fs = new FileStream(filePath, FileMode.Create))
-            using (StreamWriter writer = new StreamWriter(fs))
+            using (FileStream fs = new(filePath, FileMode.Create))
+            using (StreamWriter writer = new(fs))
             {
                 writer.Write(json);
             }
         }
-        public List<Book> LoadBooks(string filePath)
+        public static List<Book> LoadBooks(string filePath)
         {
             if (!File.Exists(filePath))
                 return new List<Book>();
-            using (FileStream fs = new FileStream(filePath, FileMode.Open))
-            using (StreamReader reader = new StreamReader(fs))
+            using (FileStream fs = new(filePath, FileMode.Open))
+            using (StreamReader reader = new(fs))
             {
                 var json = reader.ReadToEnd();
                 return JsonConvert.DeserializeObject<List<Book>>(json);
