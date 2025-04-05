@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             AddBook = new Button();
             DeleteBook = new Button();
@@ -36,7 +35,6 @@
             ReturnBook = new Button();
             label1 = new Label();
             ListBooks = new DataGridView();
-            libraryClassBindingSource = new BindingSource(components);
             labelID = new Label();
             NameBook = new Label();
             Author = new Label();
@@ -49,11 +47,8 @@
             textBoxYear = new TextBox();
             textBoxQuantity = new TextBox();
             comboBoxStatus = new ComboBox();
-            libraryClassBindingSource1 = new BindingSource(components);
             buttonLoadData = new Button();
             ((System.ComponentModel.ISupportInitialize)ListBooks).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource1).BeginInit();
             SuspendLayout();
             // 
             // AddBook
@@ -116,10 +111,6 @@
             ListBooks.RowHeadersWidth = 62;
             ListBooks.Size = new Size(1027, 246);
             ListBooks.TabIndex = 5;
-            // 
-            // libraryClassBindingSource
-            // 
-            libraryClassBindingSource.DataSource = typeof(LibraryClass);
             // 
             // labelID
             // 
@@ -224,10 +215,6 @@
             comboBoxStatus.Size = new Size(150, 33);
             comboBoxStatus.TabIndex = 26;
             // 
-            // libraryClassBindingSource1
-            // 
-            libraryClassBindingSource1.DataSource = typeof(LibraryClass);
-            // 
             // buttonLoadData
             // 
             buttonLoadData.Location = new Point(405, 323);
@@ -266,8 +253,6 @@
             Name = "MainForm";
             Text = "Библиотека им. Ф.М. Достоевского";
             ((System.ComponentModel.ISupportInitialize)ListBooks).EndInit();
-            ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)libraryClassBindingSource1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -280,7 +265,6 @@
         private Button ReturnBook;
         private Label label1;
         private DataGridView ListBooks;
-        private BindingSource libraryClassBindingSource;
         private Label labelID;
         private Label NameBook;
         private Label Author;
@@ -293,7 +277,6 @@
         private TextBox textBoxYear;
         private TextBox textBoxQuantity;
         private ComboBox comboBoxStatus;
-        private BindingSource libraryClassBindingSource1;
         private Button buttonLoadData;
     }
 }
