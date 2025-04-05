@@ -4,6 +4,9 @@ using System.Windows.Forms.VisualStyles;
 using System.ComponentModel;
 using System.IO;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace LibraryManagement
 {
@@ -13,7 +16,7 @@ namespace LibraryManagement
         {
             InitializeComponent();
         }
-        public List<LibraryClass.Book> books = [];
+        public List<Book> books = [];
 
         private void ButtonAddBook_Click(object sender, EventArgs e)
         {
@@ -86,87 +89,36 @@ namespace LibraryManagement
             ListBooks.Columns[2].HeaderText = "Год издания";
             ListBooks.Columns[3].HeaderText = "Статус";
             ListBooks.Columns[4].HeaderText = "Количество";
-            SaveDataGridViewToFile(@"TxtFile");
         }
-        private void SaveDataGridViewToFile(string filePath)
+        private void SaveDataGridViewToFile(string filePath, List<Book> books)
         {
-            if (File.Exists(filePath))
+            var json = JsonConvert.SerializeObject(books, Formatting.Indented);
+            using (FileStream fs = new FileStream(filePath, FileMode.Create))
+            using (StreamWriter writer = new StreamWriter(fs))
             {
-                string content = File.ReadAllText(filePath);
-                if (string.IsNullOrEmpty(content))
-                {
-                    using (StreamWriter writer = new StreamWriter(filePath))
-                    {
-                        for (int i = 0; i < ListBooks.Columns.Count; i++)
-                        {
-                            writer.Write(ListBooks.Columns[i].HeaderText);
-                            if (i < ListBooks.Columns.Count - 1)
-                                writer.Write(", ");
-                        }
-                        writer.WriteLine();
-                        foreach (DataGridViewRow row in ListBooks.Rows)
-                        {
-                            if (!row.IsNewRow)
-                            {
-                                for (int i = 0; i < ListBooks.Columns.Count; i++)
-                                {
-                                    writer.Write(row.Cells[i].Value?.ToString());
-                                    if (i < ListBooks.Columns.Count - 1)
-                                        writer.Write(", ");
-                                }
-                                writer.WriteLine();
-                            }
-                        }
-                    }
-                }
+                writer.Write(json);
             }
         }
-        public class BookLoader
+        public List<Book> LoadBooks(string filePath)
         {
-            public List<Book> LoadBooks(string filePath)
+            if (!File.Exists(filePath))
+                return new List<Book>();
+            using (FileStream fs = new FileStream(filePath, FileMode.Open))
+            using (StreamReader reader = new StreamReader(fs))
             {
-                FileInfo fileInfo = new FileInfo(filePath);
-                if (!fileInfo.IsReadOnly)
-                {
-                    fileInfo.IsReadOnly = true;
-                }
-                List<Book> booksGrid = new List<Book>();
-
-                try
-                {
-                    var lines = File.ReadAllLines(filePath);
-                    foreach (var line in lines)
-                    {
-                        var parts = line.Split(',');
-
-                        if (parts.Length == 5)
-                        {
-                            Book book = new Book
-                            {
-                                //ID = int.Parse(parts[0]),
-                                Title = parts[0],
-                                Author = parts[1],
-                                Year = int.Parse(parts[2]),
-                                IsIssued = Boolean.Parse(parts[3]),
-                                Quantity = int.Parse(parts[4])
-                            };
-                            booksGrid.Add(book);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Ошибка при загрузке книг: {ex.Message}");
-                }
-                return booksGrid;
+                var json = reader.ReadToEnd();
+                return JsonConvert.DeserializeObject<List<Book>>(json);
             }
         }
-        private void buttonLoadData_Click(object sender, EventArgs e)
+        private void ButtonLoadData_Click(object sender, EventArgs e)
         {
-            BookLoader bookLoader = new BookLoader();
-            string FilePath = "TxtFile";
-            books = bookLoader.LoadBooks(FilePath);
+            books = LoadBooks("BooksDataFile");
             RefreshBookGrid();
+        }
+
+        private void ButtonSaveData_Click(object sender, EventArgs e)
+        {
+            SaveDataGridViewToFile("BooksDataFile", books);
         }
     }
 }
