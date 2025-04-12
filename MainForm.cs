@@ -46,6 +46,7 @@ namespace LibraryManagement
             finally
             {
                 RefreshBookGrid();
+                comboBoxStatus.Text = string.Empty;
                 textBoxIdBook.Text = string.Empty;
                 textBoxTitle.Text = string.Empty;
                 textBoxAuthor.Text = string.Empty;
@@ -56,46 +57,79 @@ namespace LibraryManagement
 
         private void ButtonGiveOutBook_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(textBoxIdBook.Text);
-            var book = books.FirstOrDefault(b => b.ID == id);
-            if (book != null && book.IsIssued && book.Quantity == 1)
+            try
             {
-                book.IsIssued = false;
-                book.Quantity--;
-                RefreshBookGrid();
+                if (string.IsNullOrEmpty(textBoxIdBook.Text))
+                {
+                    throw new Exception("Поле Id книги обязательно для заполнения!");
+                }
+                int id = Convert.ToInt32(textBoxIdBook.Text);
+                var book = books.FirstOrDefault(b => b.ID == id);
+                if (book != null && book.IsIssued && book.Quantity == 1)
+                {
+                    book.IsIssued = false;
+                    book.Quantity--;
+                    RefreshBookGrid();
+                }
+                else if (book != null && book.IsIssued && book.Quantity > 1)
+                {
+                    book.Quantity--;
+                    RefreshBookGrid();
+                }
+                textBoxIdBook.Text = string.Empty;
             }
-            else if (book != null && book.IsIssued && book.Quantity > 1)
+            catch (Exception ex)
             {
-                book.Quantity--;
-                RefreshBookGrid();
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            textBoxIdBook.Text = string.Empty;
         }
 
         private void ButtonDeleteBook_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(textBoxIdBook.Text);
-            books.RemoveAll(b => b.ID == id);
-            RefreshBookGrid();
-            textBoxIdBook.Text = string.Empty;
+            try
+            {
+                if (string.IsNullOrEmpty(textBoxIdBook.Text))
+                {
+                    throw new Exception("Поле Id книги обязательно для заполнения!");
+                }
+                int id = Convert.ToInt32(textBoxIdBook.Text);
+                books.RemoveAll(b => b.ID == id);
+                RefreshBookGrid();
+                textBoxIdBook.Text = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ButtonReturnBook_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(textBoxIdBook.Text);
-            var book = books.FirstOrDefault(b => b.ID == id);
-            if (book != null && book.IsIssued && book.Quantity > 0)
+            try
             {
-                book.Quantity++;
-                RefreshBookGrid();
+                if (string.IsNullOrEmpty(textBoxIdBook.Text))
+                {
+                    throw new Exception("Поле Id книги обязательно для заполнения!");
+                }
+                int id = Convert.ToInt32(textBoxIdBook.Text);
+                var book = books.FirstOrDefault(b => b.ID == id);
+                if (book != null && book.IsIssued && book.Quantity > 0)
+                {
+                    book.Quantity++;
+                    RefreshBookGrid();
+                }
+                else if (book != null && !book.IsIssued && book.Quantity == 0)
+                {
+                    book.IsIssued = true;
+                    book.Quantity++;
+                    RefreshBookGrid();
+                }
+                textBoxIdBook.Text = string.Empty;
             }
-            else if (book != null && !book.IsIssued && book.Quantity == 0)
+            catch (Exception ex)
             {
-                book.IsIssued = true;
-                book.Quantity++;
-                RefreshBookGrid();
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            textBoxIdBook.Text = string.Empty;
         }
         private void RefreshBookGrid()
         {
