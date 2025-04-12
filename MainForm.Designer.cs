@@ -226,7 +226,7 @@
             // 
             // buttonLoadData
             // 
-            buttonLoadData.Location = new Point(241, 323);
+            buttonLoadData.Location = new Point(298, 323);
             buttonLoadData.Name = "buttonLoadData";
             buttonLoadData.Size = new Size(250, 34);
             buttonLoadData.TabIndex = 27;
@@ -236,7 +236,7 @@
             // 
             // ButtonSaveData
             // 
-            ButtonSaveData.Location = new Point(660, 323);
+            ButtonSaveData.Location = new Point(695, 323);
             ButtonSaveData.Name = "ButtonSaveData";
             ButtonSaveData.Size = new Size(262, 34);
             ButtonSaveData.TabIndex = 28;

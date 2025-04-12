@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace LibraryManagement
 {
@@ -16,14 +17,14 @@ namespace LibraryManagement
         {
             InitializeComponent();
         }
-        public List<Book> books = [];
+        public BindingList<Book> books = [];
 
         private void ButtonAddBook_Click(object sender, EventArgs e)
         {
             try
             {
-                if(string.IsNullOrEmpty(textBoxIdBook.Text) || string.IsNullOrEmpty(textBoxTitle.Text) 
-                    || string.IsNullOrEmpty(textBoxYear.Text) || string.IsNullOrEmpty(textBoxQuantity.Text) 
+                if (string.IsNullOrEmpty(textBoxIdBook.Text) || string.IsNullOrEmpty(textBoxTitle.Text)
+                    || string.IsNullOrEmpty(textBoxYear.Text) || string.IsNullOrEmpty(textBoxQuantity.Text)
                     || string.IsNullOrEmpty(textBoxAuthor.Text) || string.IsNullOrEmpty(comboBoxStatus.Text))
                 {
                     throw new Exception("Все поля должны быть заполнены!");
@@ -39,7 +40,7 @@ namespace LibraryManagement
                 };
                 books.Add(book);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -93,7 +94,11 @@ namespace LibraryManagement
                     throw new Exception("Поле Id книги обязательно для заполнения!");
                 }
                 int id = Convert.ToInt32(textBoxIdBook.Text);
-                books.RemoveAll(b => b.ID == id);
+                IReadOnlyList<Book> bookToRemove = books.Where(b => (b.ID == id)).ToList();
+                foreach (Book book in bookToRemove)
+                {
+                    books.Remove(book);
+                }
                 RefreshBookGrid();
                 textBoxIdBook.Text = string.Empty;
             }
@@ -135,6 +140,7 @@ namespace LibraryManagement
         {
             ListBooks.DataSource = null;
             ListBooks.DataSource = books;
+            ListBooks.ReadOnly = false;
             //ListBooks.Columns[0].HeaderText = "Id книги";
             ListBooks.Columns[0].HeaderText = "Название";
             ListBooks.Columns[1].HeaderText = "Автор";
@@ -142,7 +148,7 @@ namespace LibraryManagement
             ListBooks.Columns[3].HeaderText = "Статус";
             ListBooks.Columns[4].HeaderText = "Количество";
         }
-        private static void SaveDataGridViewToFile(string filePath, List<Book> books)
+        private static void SaveDataGridViewToFile(string filePath, BindingList<Book> books)
         {
             var json = JsonConvert.SerializeObject(books, Formatting.Indented);
             using (FileStream fs = new(filePath, FileMode.Create))
@@ -151,15 +157,15 @@ namespace LibraryManagement
                 writer.Write(json);
             }
         }
-        public static List<Book> LoadBooks(string filePath)
+        public static BindingList<Book> LoadBooks(string filePath)
         {
             if (!File.Exists(filePath))
-                return new List<Book>();
+                return new BindingList<Book>();
             using (FileStream fs = new(filePath, FileMode.Open))
             using (StreamReader reader = new(fs))
             {
                 var json = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<List<Book>>(json);
+                return JsonConvert.DeserializeObject<BindingList<Book>>(json);
             }
         }
         private void ButtonLoadData_Click(object sender, EventArgs e)
@@ -171,6 +177,11 @@ namespace LibraryManagement
         private void ButtonSaveData_Click(object sender, EventArgs e)
         {
             SaveDataGridViewToFile("BooksDataFile", books);
+        }
+
+        private void ButtonUpdateData_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
