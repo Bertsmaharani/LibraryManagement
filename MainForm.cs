@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Microsoft.VisualBasic.ApplicationServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace LibraryManagement
 {
@@ -16,8 +17,12 @@ namespace LibraryManagement
         public MainForm()
         {
             InitializeComponent();
+
+            comboBoxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+
         }
         public BindingList<Book> books = [];
+        private string FilePath;
 
         private void ButtonAddBook_Click(object sender, EventArgs e)
         {
@@ -39,6 +44,7 @@ namespace LibraryManagement
                     IsIssued = (comboBoxStatus.Text == "Доступна") ? (true) : (false),
                 };
                 books.Add(book);
+                LoadBooks(FilePath);
             }
             catch (Exception ex)
             {
@@ -78,6 +84,7 @@ namespace LibraryManagement
                     RefreshBookGrid();
                 }
                 textBoxIdBook.Text = string.Empty;
+                LoadBooks(FilePath);
             }
             catch (Exception ex)
             {
@@ -101,6 +108,7 @@ namespace LibraryManagement
                 }
                 RefreshBookGrid();
                 textBoxIdBook.Text = string.Empty;
+                LoadBooks(FilePath);
             }
             catch (Exception ex)
             {
@@ -118,18 +126,23 @@ namespace LibraryManagement
                 }
                 int id = Convert.ToInt32(textBoxIdBook.Text);
                 var book = books.FirstOrDefault(b => b.ID == id);
-                if (book != null && book.IsIssued && book.Quantity > 0)
+                if (book != null && book.IsIssued && book.Quantity > 0 && book.Quantity < book.MaxQuantity)
                 {
                     book.Quantity++;
                     RefreshBookGrid();
                 }
-                else if (book != null && !book.IsIssued && book.Quantity == 0)
+                else if (book != null && !book.IsIssued && book.Quantity == 0 && book.Quantity < book.MaxQuantity)
                 {
                     book.IsIssued = true;
                     book.Quantity++;
                     RefreshBookGrid();
                 }
+                else if (book.Quantity == book.MaxQuantity)
+                {
+                    throw new Exception("Книга не может быть вовзращена, потому что достигнуто максимальное количество!");
+                }
                 textBoxIdBook.Text = string.Empty;
+                LoadBooks(FilePath);
             }
             catch (Exception ex)
             {
@@ -170,18 +183,94 @@ namespace LibraryManagement
         }
         private void ButtonLoadData_Click(object sender, EventArgs e)
         {
-            books = LoadBooks("BooksDataFile");
+            books = LoadBooks(FilePath);
             RefreshBookGrid();
         }
 
         private void ButtonSaveData_Click(object sender, EventArgs e)
         {
-            SaveDataGridViewToFile("BooksDataFile", books);
+            SaveDataGridViewToFile(FilePath, books);
         }
 
         private void ButtonUpdateData_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBoxQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxYear_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxIdBook_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxAuthor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ButtonSelectFile_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Выбор файла";
+                openFileDialog.Filter = "Все файлы (*.*)|*.*";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    FilePath = openFileDialog.FileName;
+                    MessageBox.Show("Выбранный файл: " + openFileDialog.FileName);
+                }
+            }
+        }
+
+        private void ButtonSelectPath_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
+            {
+                folderBrowserDialog.Description = "Выберите папку";
+
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    FilePath = folderBrowserDialog.SelectedPath;
+                    MessageBox.Show("Выбранная папка: " + folderBrowserDialog.SelectedPath);
+                }
+            }
+        }
+
+        private void ListBooks_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ListBooks.SelectedRows.Count > 0)
+            {
+                var selectedRow = ListBooks.SelectedRows[0];
+                //textBoxIdBook.Text = selectedRow.Cells["ID"].Value.ToString();
+                textBoxTitle.Text = selectedRow.Cells["Title"].Value.ToString();
+                textBoxAuthor.Text = selectedRow.Cells["Author"].Value.ToString();
+                textBoxYear.Text = selectedRow.Cells["Year"].Value.ToString();
+                bool isIssued = (bool)selectedRow.Cells["IsIssued"].Value;
+                comboBoxStatus.Text = isIssued ? "Доступна" : "Не доступна";
+                textBoxQuantity.Text = selectedRow.Cells["Quantity"].Value.ToString();
+            }
         }
     }
 }

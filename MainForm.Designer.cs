@@ -49,6 +49,9 @@
             comboBoxStatus = new ComboBox();
             buttonLoadData = new Button();
             ButtonSaveData = new Button();
+            ButtonSelectFile = new Button();
+            ButtonSelectPath = new Button();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)ListBooks).BeginInit();
             SuspendLayout();
             // 
@@ -98,7 +101,7 @@
             label1.ForeColor = SystemColors.HighlightText;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(1027, 25);
+            label1.Size = new Size(1295, 25);
             label1.TabIndex = 4;
             label1.Text = "Работа с книгами";
             label1.TextAlign = ContentAlignment.TopCenter;
@@ -112,8 +115,9 @@
             ListBooks.Location = new Point(0, 363);
             ListBooks.Name = "ListBooks";
             ListBooks.RowHeadersWidth = 62;
-            ListBooks.Size = new Size(1027, 246);
+            ListBooks.Size = new Size(1295, 246);
             ListBooks.TabIndex = 5;
+            ListBooks.CellClick += ListBooks_CellClick;
             // 
             // labelID
             // 
@@ -130,7 +134,7 @@
             NameBook.Anchor = AnchorStyles.None;
             NameBook.AutoSize = true;
             NameBook.ForeColor = SystemColors.HighlightText;
-            NameBook.Location = new Point(522, 55);
+            NameBook.Location = new Point(528, 55);
             NameBook.Name = "NameBook";
             NameBook.Size = new Size(90, 25);
             NameBook.TabIndex = 16;
@@ -141,7 +145,7 @@
             Author.Anchor = AnchorStyles.None;
             Author.AutoSize = true;
             Author.ForeColor = SystemColors.HighlightText;
-            Author.Location = new Point(833, 55);
+            Author.Location = new Point(842, 55);
             Author.Name = "Author";
             Author.Size = new Size(63, 25);
             Author.TabIndex = 17;
@@ -163,7 +167,7 @@
             Status.Anchor = AnchorStyles.None;
             Status.AutoSize = true;
             Status.ForeColor = SystemColors.HighlightText;
-            Status.Location = new Point(534, 186);
+            Status.Location = new Point(537, 186);
             Status.Name = "Status";
             Status.Size = new Size(63, 25);
             Status.TabIndex = 19;
@@ -174,7 +178,7 @@
             Quantity.Anchor = AnchorStyles.None;
             Quantity.AutoSize = true;
             Quantity.ForeColor = SystemColors.HighlightText;
-            Quantity.Location = new Point(815, 186);
+            Quantity.Location = new Point(809, 186);
             Quantity.Name = "Quantity";
             Quantity.Size = new Size(107, 25);
             Quantity.TabIndex = 20;
@@ -186,6 +190,7 @@
             textBoxIdBook.Name = "textBoxIdBook";
             textBoxIdBook.Size = new Size(99, 31);
             textBoxIdBook.TabIndex = 21;
+            textBoxIdBook.KeyPress += textBoxIdBook_KeyPress;
             // 
             // textBoxTitle
             // 
@@ -200,6 +205,7 @@
             textBoxAuthor.Name = "textBoxAuthor";
             textBoxAuthor.Size = new Size(283, 31);
             textBoxAuthor.TabIndex = 23;
+            textBoxAuthor.KeyPress += textBoxAuthor_KeyPress;
             // 
             // textBoxYear
             // 
@@ -207,6 +213,7 @@
             textBoxYear.Name = "textBoxYear";
             textBoxYear.Size = new Size(99, 31);
             textBoxYear.TabIndex = 24;
+            textBoxYear.KeyPress += textBoxYear_KeyPress;
             // 
             // textBoxQuantity
             // 
@@ -214,6 +221,7 @@
             textBoxQuantity.Name = "textBoxQuantity";
             textBoxQuantity.Size = new Size(81, 31);
             textBoxQuantity.TabIndex = 25;
+            textBoxQuantity.KeyPress += textBoxQuantity_KeyPress;
             // 
             // comboBoxStatus
             // 
@@ -226,9 +234,9 @@
             // 
             // buttonLoadData
             // 
-            buttonLoadData.Location = new Point(298, 323);
+            buttonLoadData.Location = new Point(1047, 142);
             buttonLoadData.Name = "buttonLoadData";
-            buttonLoadData.Size = new Size(250, 34);
+            buttonLoadData.Size = new Size(248, 34);
             buttonLoadData.TabIndex = 27;
             buttonLoadData.Text = "Загрузить данные из файла";
             buttonLoadData.UseVisualStyleBackColor = true;
@@ -236,20 +244,52 @@
             // 
             // ButtonSaveData
             // 
-            ButtonSaveData.Location = new Point(695, 323);
+            ButtonSaveData.Location = new Point(1047, 95);
             ButtonSaveData.Name = "ButtonSaveData";
-            ButtonSaveData.Size = new Size(262, 34);
+            ButtonSaveData.Size = new Size(248, 34);
             ButtonSaveData.TabIndex = 28;
             ButtonSaveData.Text = "Сохранить данные в файл";
             ButtonSaveData.UseVisualStyleBackColor = true;
             ButtonSaveData.Click += ButtonSaveData_Click;
+            // 
+            // ButtonSelectFile
+            // 
+            ButtonSelectFile.Location = new Point(1047, 186);
+            ButtonSelectFile.Name = "ButtonSelectFile";
+            ButtonSelectFile.Size = new Size(248, 34);
+            ButtonSelectFile.TabIndex = 29;
+            ButtonSelectFile.Text = "Выбрать файл";
+            ButtonSelectFile.UseVisualStyleBackColor = true;
+            ButtonSelectFile.Click += ButtonSelectFile_Click;
+            // 
+            // ButtonSelectPath
+            // 
+            ButtonSelectPath.Location = new Point(1047, 230);
+            ButtonSelectPath.Name = "ButtonSelectPath";
+            ButtonSelectPath.Size = new Size(248, 34);
+            ButtonSelectPath.TabIndex = 30;
+            ButtonSelectPath.Text = "Выбрать путь";
+            ButtonSelectPath.UseVisualStyleBackColor = true;
+            ButtonSelectPath.Click += ButtonSelectPath_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(560, 311);
+            button3.Name = "button3";
+            button3.Size = new Size(165, 34);
+            button3.TabIndex = 31;
+            button3.Text = "Редактировать";
+            button3.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientActiveCaption;
-            ClientSize = new Size(1027, 609);
+            ClientSize = new Size(1295, 609);
+            Controls.Add(button3);
+            Controls.Add(ButtonSelectPath);
+            Controls.Add(ButtonSelectFile);
             Controls.Add(ButtonSaveData);
             Controls.Add(buttonLoadData);
             Controls.Add(comboBoxStatus);
@@ -300,5 +340,8 @@
         private ComboBox comboBoxStatus;
         private Button buttonLoadData;
         private Button ButtonSaveData;
+        private Button ButtonSelectFile;
+        private Button ButtonSelectPath;
+        private Button button3;
     }
 }

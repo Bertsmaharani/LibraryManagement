@@ -16,6 +16,7 @@ namespace LibraryManagement
             public int Year { get; set; }
             public bool IsIssued { get; set; }
             public int Quantity { get; set; }
+            public int MaxQuantity { get; set; }
         }
     }
 }
